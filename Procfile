@@ -1,1 +1,1 @@
-web: gunicorn NullHat-Example-Endpoint
+web: gunicorn app:app
