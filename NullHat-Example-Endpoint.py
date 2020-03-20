@@ -12,6 +12,7 @@ from sqlalchemy import create_engine
 import pymysql
 import pandas as pd
 import flask
+import os
 
 from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
