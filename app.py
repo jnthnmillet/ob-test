@@ -5,7 +5,7 @@
 # 
 # Dependencies are libraries that help extend the functionality of core Python.
 
-# In[1]:
+# In[ ]:
 
 
 from sqlalchemy import create_engine
@@ -24,7 +24,7 @@ pymysql.install_as_MySQLdb()
 # 
 # The `is_heroku` variable checks to see if this code has been deployed to Heroku. If not, then read in the credentials from the `config.py` file.
 
-# In[2]:
+# In[ ]:
 
 
 # Heroku Check
@@ -48,7 +48,7 @@ else:
 # 
 # There is a bunch of documentation on it, but you can start here: https://flask.palletsprojects.com/en/1.1.x/
 
-# In[3]:
+# In[ ]:
 
 
 app = Flask(__name__)
@@ -58,7 +58,7 @@ app = Flask(__name__)
 # 
 # This uses the config variables that were created earlier.
 
-# In[4]:
+# In[ ]:
 
 
 engine = create_engine(f'mysql://{remote_db_user}:{remote_db_pwd}@{remote_db_host}:{remote_db_port}/{remote_db_name}')
@@ -72,7 +72,7 @@ engine = create_engine(f'mysql://{remote_db_user}:{remote_db_pwd}@{remote_db_hos
 # 
 # Port `5000` is the default port for Flask.
 
-# In[5]:
+# In[ ]:
 
 
 @app.route('/')
@@ -90,7 +90,7 @@ def index():
 # 
 # This one is named `api/data/ksa`. The idea here is to indicate that data will be served up through an API. Technically, routes can be named whatever you'd like.
 
-# In[6]:
+# In[ ]:
 
 
 @app.route('/api/data/ksa')
@@ -101,6 +101,14 @@ def ksa():
     # query the `ksa` table and load it into your DataFrame
     ksa_df = pd.read_sql('SELECT * FROM ksa', conn)
     
+    try:
+        ksa_df.drop(columns=['id'], inplace=True)
+        ksa_df.rename(columns={'ksa ID': 'KSA ID', 'ksa Focus':'Focus', 'ksas Detail':'Detail', 'weight':'Weight'}, inplace=True)
+        # ksa_json.sort_values(by=['Focus', 'Detail'])
+    except Exception as e:
+        print(e)
+        pass
+        
     # convert your DataFrame into `json`
     ksa_json = ksa_df.to_json(orient='records')
 
