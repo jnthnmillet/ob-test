@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OB1 test</title>
+    <link rel='stylesheet' type='text/css' href='{{ url_for("static", filename="css/style.css") }}'>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.js'></script>
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type='text/javascript' src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel='stylesheet' type='text/css' href='{{ url_for("static", filename="css/jumbotron.css") }}'>
+
+    <script type='text/javascript' src='{{ url_for("static", filename="js/app.js") }}' ></script>
+  </head>
+
+  <body>
+
+    <div class="jumbotron">
+      <h1 class="display-4">Hello World!</h1>
+      <p class="lead">This is a sample landing page which shows a table that has been built from the KSA json.</p>
+    </div>
+
+    <h3 class="display-3">Sample KSA Table</h3>
+    These records should are pulled from the API through the database.
+    <p id="ksaTable"></p>
+  </body>
+
+</html>
